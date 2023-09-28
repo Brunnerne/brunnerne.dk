@@ -1,0 +1,27 @@
+{
+  "readmeUrl": "https://raw.githubusercontent.com/cveinnt/cveinnt/master/README.md",
+  "title": "Brunnerne",
+  "name": "Brunnerne",
+  "ascii": "Brunnerne Terminal",
+  "social": {
+    "github": "brunnerne",
+    "linkedin": "brunnerne",
+    "website": "brunnerne.dk",
+    "discord": "https://discord.gg/9axcZmNjPW"
+  },
+  "email": "brunnerne@gmail.com",
+  "ps1_hostname": "brunnerne.dk",
+  "ps1_username": "visitor",
+  "repo": "https://github.com/brunnerne/brunnerne.dk",
+  "colors": {
+    "dark": {
+      "background": "#232323",
+      "foreground": "#eebc1d",
+      "yellow": "#FFD138",
+      "green": "#35CC35",
+      "gray": "#88C0D0",
+      "blue": "#1C39ED",
+      "red": "#ED1125"
+    }
+  }
+}
