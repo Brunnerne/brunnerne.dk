@@ -80,32 +80,41 @@ export const getFileFromPath = async (
   // Get new file
   let changeTo = startFile;
   for (let i = 0; i < path.length; i++) {
+    // Skip empty path
     if (path[i] === '') {
       continue;
     }
+
+    // Skip current directory
     if (path[i] === '.') {
       continue;
     }
+
+    // Go up a directory
     if (path[i] === '..') {
       changeTo = changeTo.getParent();
       if (changeTo === undefined) {
         return undefined;
       }
+
+      // Check if user has permission to access file
       if (
-        changeTo.owner !== undefined &&
-        changeTo.owner !== State.instance.user
+        !changeTo.isReadable()
       ) {
         return false;
       }
       continue;
     }
+
+    // find child directory
     changeTo = changeTo.getChild(path[i]);
     if (changeTo === undefined) {
       return undefined;
     }
+
+    // Check if user has permission to access file
     if (
-      changeTo.owner !== undefined &&
-      changeTo.owner !== State.instance.user
+      !changeTo.isReadable()
     ) {
       return false;
     }

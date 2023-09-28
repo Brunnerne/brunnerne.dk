@@ -1,3 +1,5 @@
+import group from '../../filesystem/etc/group';
+import Group from './Group';
 import State from './State';
 import User from './User';
 
@@ -14,22 +16,27 @@ export default abstract class File {
    * The name of the File.
    */
   public abstract name: string;
+
   /**
    * The parent of the File.
    */
-  private parent: File | undefined = undefined;
+  protected parent: File | undefined = undefined;
+
   /**
    * The children of the File.
    */
-  private children: File[] = [];
+  protected children: File[] = [];
+
   /**
    * File content.
    */
   protected content: string = '';
+
   /**
    * The size of the File.
    */
   public size: number = 0;
+
   /**
    * The metadata of the File.
    *
@@ -39,7 +46,7 @@ export default abstract class File {
    * - Second part (3 characters) determines the permission for thr owner of the file.
    * - Third part (3 characters) determines the permission for the group owning the file.
    * - Fourth part (3 characters) determines the permissions for others.
-   *
+   * 
    * The type of the File can be:
    * - d: directory
    * - -: file
@@ -50,21 +57,37 @@ export default abstract class File {
    * - x: execute
    * - -: no permission
    * permission is always`rwx`. 
-   * Any part that is exchanged with `-`, will result in the permission being revoled for the party it repredents.
+   * Any part that is exchanged with `-`, will result in the permission being revoked for the party it repredents.
    *
    * Example:
-   * - drwxrwxrwx: directory with read, write and execute permissions for every part.
+   * - drwx: directory, read, write, execute
    */
   public abstract metadata: string;
+
   /**
    * The owner of the File.
    *
    * The owner is the User that created the File.
-   * The owner can be undefined if the File is available to all Users.
    */
-  public abstract owner: User | undefined;
+  public abstract owner: User;
 
-  public constructor() {}
+  /**
+   * The group of the File.
+   * 
+   * The group represent the Group that owns the File.
+   */
+  public abstract group: Group;
+
+  protected constructor() { }
+
+  /**
+   * Links list of children to parent, and thereby also initializes the children.
+   */
+  protected linkChildren(children: File[], parent: File = this): void {
+    children.forEach(child => {
+      child.setParent(parent);
+    });
+  }
 
   /**
    * Reads the File.
@@ -98,7 +121,73 @@ export default abstract class File {
    * @returns Whether the File is readable or not.
    */
   public isReadable(): boolean {
+
+    if (this.owner === State.instance.user) {
+      return this.isOwnerReadable();
+    }
+
+    State.instance.user.group.forEach((group) => {
+      if (this.isGroupReadable()) {
+        return true;
+      }
+    });
+
+    return this.metadata[7] === 'r';
+  }
+
+  /**
+   * Whether the File is readable by the owner or not.
+   *
+   * @returns Whether the File is readable by the owner or not.
+   */
+  public isOwnerReadable(): boolean {
     return this.metadata[1] === 'r';
+  }
+
+  /**
+   * Whether the File is readable by the group or not.
+   *
+   * @returns Whether the File is readable by the group or not.
+   */
+  public isGroupReadable(): boolean {
+    return this.metadata[4] === 'r';
+  }
+
+  /**
+   * Whether the File is writable or not.
+   *
+   * @returns Whether the File is writable or not.
+   */
+  public isWritable(): boolean {
+    if (this.owner === State.instance.user) {
+      return this.isOwnerWritable();
+    }
+
+    State.instance.user.group.forEach((group) => {
+      if (this.isGroupWritable()) {
+        return true;
+      }
+    });
+
+    return this.metadata[8] === 'w';
+  }
+
+  /**
+   * Whether the File is writable by the owner or not.
+   *
+   * @returns Whether the File is writable by the owner or not.
+   */
+  public isOwnerWritable(): boolean {
+    return this.metadata[2] === 'w';
+  }
+
+  /**
+   * Whether the File is writable by the group or not.
+   *
+   * @returns Whether the File is writable by the group or not.
+   */
+  public isGroupWritable(): boolean {
+    return this.metadata[5] === 'w';
   }
 
   /**
@@ -107,7 +196,44 @@ export default abstract class File {
    * @returns Whether the File is executable or not.
    */
   public isExecutable(): boolean {
+    if (this.owner === State.instance.user) {
+      return this.isOwnerExecutable();
+    }
+
+    State.instance.user.group.forEach((group) => {
+      if (this.isGroupExecutable()) {
+        return true;
+      }
+    });
+
+    return this.metadata[9] === 'x';
+  }
+
+  /**
+   * Whether the File is executable by the owner or not.
+   *
+   * @returns Whether the File is executable by the owner or not.
+   */
+  public isOwnerExecutable(): boolean {
     return this.metadata[3] === 'x';
+  }
+
+  /**
+   * Whether the File is executable by the group or not.
+   *
+   * @returns Whether the File is executable by the group or not.
+   */
+  public isGroupExecutable(): boolean {
+    return this.metadata[6] === 'x';
+  }
+
+  /**
+   * Gets the name of the File.
+   *
+   * @returns The name of the File.
+   */
+  public getName(): string {
+    return this.name;
   }
 
   /**
@@ -322,9 +448,14 @@ export default abstract class File {
    * @returns The descendants of the File.
    */
   public getDescendants(): File[] {
-    return this.children.reduce((descendants: File[], child: File) => {
-      return descendants.concat(child, child.getDescendants());
-    }, []);
+    let descendants: File[] = [];
+
+    this.children.forEach((child) => {
+      descendants.push(child);
+      descendants.push(...child.getDescendants());
+    });
+    
+    return descendants;
   }
 
   /**
@@ -367,8 +498,11 @@ export default abstract class File {
    * @returns The size of the File.
    */
   public getSize(): number {
-    return this.getFiles().reduce((size: number, File: File) => {
-      return size + File.size;
-    }, 0);
+    let size = this.size;
+    this.getChildren().forEach((child) => {
+      size += child.getSize();
+    });
+
+    return size;
   }
 }
