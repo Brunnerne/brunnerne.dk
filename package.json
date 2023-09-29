@@ -1,10 +1,9 @@
 {
-  "name": "liveterm",
+  "name": "brunnerne",
   "version": "0.1.0",
-  "license": "MIT",
   "author": {
-    "name": "Mikkel Albrechtsen",
-    "url": "https://themikkel.dk"
+    "name": "Brunnerne",
+    "url": "https://brunnerne.dk"
   },
   "scripts": {
     "dev": "next dev",
