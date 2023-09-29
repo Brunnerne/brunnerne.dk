@@ -1,2 +1,4 @@
 User-agent: *
+Disallow:
+Disallow: /cgi-bin/
 Disallow: /super_secret_vault/very_hidden_flag.txt
