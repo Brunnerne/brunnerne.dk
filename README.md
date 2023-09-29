@@ -1,3 +1,3 @@
 # Brunnerne website
 
-Brunnerne website, created used the [LiveTerm by Cveinnt](https://github.com/Cveinnt/LiveTerm) that is *heavily* modified.
+Brunnerne website, created using a heavily modified version of [LiveTerm by Cveinnt](https://github.com/Cveinnt/LiveTerm).
