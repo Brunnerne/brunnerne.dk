@@ -107,7 +107,6 @@ if (small) {
   Brunnerne CLI
 
   Type 'help' to see the list of available commands.
-  Type 'sumfetch' to display summary.
   `;
 }
 
@@ -128,6 +127,5 @@ if (small) {
   Brunnerne CLI
 
   Type 'help' to see the list of available commands.
-  Type 'sumfetch' to display summary.
   `;
 };
