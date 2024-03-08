@@ -107,6 +107,8 @@ if (small) {
   Brunnerne CLI
 
   Type 'help' to see the list of available commands.
+
+  Join us on discord at <a href="http://discord.brunnerne.dk" target="_blank">http://discord.brunnerne.dk</a>
   `;
 }
 
