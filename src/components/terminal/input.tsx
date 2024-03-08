@@ -1,9 +1,9 @@
 import React from 'react';
-import { commandExists } from '../utils/commandExists';
-import { shell } from '../utils/shell';
-import { handleTabCompletion } from '../utils/tabCompletion';
+import { commandExists } from '../../utils/commandExists';
+import { shell } from '../../utils/shell';
+import { handleTabCompletion } from '../../utils/tabCompletion';
 import { Ps1 } from './Ps1';
-import State from '../utils/structure/State';
+import State from '../../utils/structure/State';
 
 export const Input = ({
   inputRef,

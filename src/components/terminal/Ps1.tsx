@@ -1,9 +1,9 @@
 import React from 'react';
-import config from '../../config.json';
-import State from '../utils/structure/State';
+import config from '../../../config.json';
+import State from '../../utils/structure/State';
 import { History } from './history/interface';
-import User from '../utils/structure/User';
-import File from '../utils/structure/File';
+import User from '../../utils/structure/User';
+import File from '../../utils/structure/File';
 
 export const Ps1 = (params: { user: User; dir: File }) => {
   let user = params.user;
