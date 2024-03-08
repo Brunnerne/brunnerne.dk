@@ -1,5 +1,5 @@
-import File from '../../utils/structure/File';
-import User from '../../utils/structure/User';
+import File from '../../../utils/structure/File';
+import User from '../../../utils/structure/User';
 
 export interface History {
   id: number;
