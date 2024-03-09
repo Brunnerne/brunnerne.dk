@@ -19,6 +19,24 @@ const App = ({ Component, pageProps }) => {
           maximum-scale="1"
         />
         <meta charSet="UTF-8" />
+
+        <meta name="manifest" content="/site.webmanifest" />
+
+        <meta name="description" content="Brunnerne, CTF team based in southern Denmark" />
+        <meta name="keywords" content="Brunnerne, CTF, Capture The Flag, Cybersecurity, Cyber, Security, Denmark, Southern Denmark" />
+        <meta name="robots" content="index, follow" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://brunnerne.dk" />
+        <meta property="og:title" content="Brunnerne" />
+        <meta property="og:description" content="Brunnerne, CTF team based in southern Denmark" />
+        <meta property="og:image" content="https://brunnerne.dk/assets/logo-bg.webp" />
+
+        <meta property="twitter:card" content="summary" />
+        <meta property="twitter:url" content="https://brunnerne.dk" />
+        <meta property="twitter:title" content="Brunnerne" />
+        <meta property="twitter:description" content="Brunnerne, CTF team based in southern Denmark" />
+        <meta property="twitter:image" content="https://brunnerne.dk/assets/logo-bg.webp" />
       </Head>
 
       {/* min-w-max */}
