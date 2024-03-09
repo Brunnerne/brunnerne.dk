@@ -3,16 +3,18 @@ import React from 'react';
 import config from '../../config.json';
 import RollingRevealText from '../components/web/molecules/RollingRevealText';
 import RollingText from '../components/web/atoms/RollingText';
+import { useRouter } from 'next/router';
 
 interface IndexPageProps {
   inputRef: React.MutableRefObject<HTMLInputElement>;
 }
 
-const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
+const HEADERTIMEOUT = 800;
+const SUBHEADERTIMEOUT = 1200;
+const BUTTONSTIMEOUT = SUBHEADERTIMEOUT + ((35 + 37) * 50);
 
-  const HEADERTIMEOUT = 800;
-  const SUBHEADERTIMEOUT = 1200;
-  const BUTTONSTIMEOUT = 3000;
+const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
+  const router = useRouter();
 
   return (
     <>
@@ -20,7 +22,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
         <title>{config.title}</title>
       </Head>
 
-      <div ref={inputRef} className='pt-80 pb-24 flex flex-col items-center bg-dark-background animate-fade'>
+      <div ref={inputRef} className='pt-24 lg:pt-52 pb-11 flex flex-col items-center bg-dark-background animate-fade'>
         <h1 className='mt-15 text-5xl lg:text-8xl font-bold text-dark-foreground'>
           <RollingRevealText text="Brunnerne" charTime={50} timeout={HEADERTIMEOUT} />
         </h1>
@@ -36,13 +38,15 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
           </span>
         </h2>
         <div className='mt-52'>
-          <h2>Log in to the Terminal to get started</h2>
+          <h2>
+            <RollingRevealText text="Log in to the Terminal to get started" charTime={50} timeout={SUBHEADERTIMEOUT + (35 * 50)} />
+            </h2>
         </div>
         <div className='mt-8'>
           <button
             className='px-4 py-2 text-xl font-bold text-dark-background bg-dark-yellow border-2 border-dark-yellow rounded-md hover:bg-dark-foreground transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-dark-yellow focus:ring-offset-2'
             onClick={() => {
-              window.location.href = '/terminal';
+              router.push('/starting');
             }}
           >
             <RollingRevealText text="Launch terminal" charTime={50} timeout={BUTTONSTIMEOUT} />
