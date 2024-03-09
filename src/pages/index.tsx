@@ -2,24 +2,38 @@ import Head from 'next/head';
 import React from 'react';
 import config from '../../config.json';
 import RollingRevealText from '../components/web/molecules/RollingRevealText';
+import RollingText from '../components/web/atoms/RollingText';
 
 interface IndexPageProps {
   inputRef: React.MutableRefObject<HTMLInputElement>;
 }
 
 const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
+
+  const HEADERTIMEOUT = 800;
+  const SUBHEADERTIMEOUT = 1200;
+  const BUTTONSTIMEOUT = 3000;
+
   return (
     <>
       <Head>
         <title>{config.title}</title>
       </Head>
 
-      <div ref={inputRef} className='pt-80 flex flex-col items-center bg-dark-background animate-fade'>
+      <div ref={inputRef} className='pt-80 pb-24 flex flex-col items-center bg-dark-background animate-fade'>
         <h1 className='mt-15 text-5xl lg:text-8xl font-bold text-dark-foreground'>
-          <RollingRevealText text="Brunnerne" charTime={50} timeout={1000} />
+          <RollingRevealText text="Brunnerne" charTime={50} timeout={HEADERTIMEOUT} />
         </h1>
-        <h2 className='mt-5 text-xl lg:text-3xl font-bold text-dark-foreground'>
-          <RollingRevealText text="CTF team, based in southern Denmark" charTime={50} timeout={1500} />
+        <h2 className='mt-5 text-xl lg:text-3xl font-bold text-dark-foreground text-center'>
+          <RollingRevealText className='hidden lg:block' text="CTF team, based in southern Denmark" charTime={50} timeout={SUBHEADERTIMEOUT} />
+          <span className='flex flex-wrap justify-center lg:hidden'>
+            <RollingRevealText text="CTF" charTime={50} timeout={SUBHEADERTIMEOUT} />&nbsp;
+            <RollingRevealText text="team," charTime={50} timeout={SUBHEADERTIMEOUT + (4 * 50)} />&nbsp;
+            <RollingRevealText text="based" charTime={50} timeout={SUBHEADERTIMEOUT + (10 * 50)} />&nbsp;
+            <RollingRevealText text="in" charTime={50} timeout={SUBHEADERTIMEOUT + (16 * 50)} />&nbsp;
+            <RollingRevealText text="southern" charTime={50} timeout={SUBHEADERTIMEOUT + (19 * 50)} />&nbsp;
+            <RollingRevealText text="Denmark" charTime={50} timeout={SUBHEADERTIMEOUT + (28 * 50)} />
+          </span>
         </h2>
         <div className='mt-52'>
           <h2>Log in to the Terminal to get started</h2>
@@ -31,7 +45,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
               window.location.href = '/terminal';
             }}
           >
-            <RollingRevealText text="Launch terminal" charTime={50} timeout={3200} />
+            <RollingRevealText text="Launch terminal" charTime={50} timeout={BUTTONSTIMEOUT} />
           </button>
         </div>
         <div className='mt-10'>
@@ -41,7 +55,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
               window.location.href = 'http://discord.brunnerne.dk';
             }}
           >
-            <RollingRevealText text="Join Discord" charTime={50} timeout={3800} />
+            <RollingRevealText text="Join Discord" charTime={50} timeout={BUTTONSTIMEOUT + (16 * 50)} />
           </button>
         </div>
       </div>

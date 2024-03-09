@@ -44,7 +44,7 @@ export default function RollingRevealText({ text, className, charTime, rollTime,
     }, charTime || 250);
 
     return (
-        <span ref={componentRef}>
+        <span ref={componentRef} className={className}>
             {/* Correct word */}
             {text.slice(0, charIndex + 1)}
             {/* Rolling word */}

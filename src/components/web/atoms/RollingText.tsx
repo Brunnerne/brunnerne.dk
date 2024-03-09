@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useIntersection, useInterval } from "react-use";
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
     className?: string;
 }
 
-const possibleChars = 'abcdefghijklmnopqrstuvwxyz:ABCDEFGHIJKLMNOPQRSTUVWXYZ|0123456789=';
+const possibleChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
 export default function RollingText({ length, rollTime, className }: Props) {
     const componentRef = useRef(null);
@@ -18,6 +18,9 @@ export default function RollingText({ length, rollTime, className }: Props) {
     });
 
     const [rollingWord, setRollingWord] = useState("");
+    useEffect(() => {
+        setRollingWord(Array.from({ length: length }, () => possibleChars.charAt(Math.floor(Math.random() * possibleChars.length))).join(''));
+    }, [length]);
 
     useInterval(() => {
         if (intersection && intersection.intersectionRatio >= 0.1) {
