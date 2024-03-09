@@ -9,13 +9,12 @@ interface StartingPageProps {
 }
 
 const updateInterval = 10;
-const totalDuration = 3000;
-const hitProcentage = 100 - (Math.random() * 30);
+const totalDuration = 4500;
+const hitProcentage = 100;
 
 const StartingPage: React.FC<StartingPageProps> = ({ inputRef }) => {
     const router = useRouter();
     const [percent, setPercent] = React.useState(0);
-    const [startTime, setStartTime] = React.useState(Date.now());
     const [eta, setEta] = React.useState(0);
 
     useEffect(() => {
@@ -27,7 +26,7 @@ const StartingPage: React.FC<StartingPageProps> = ({ inputRef }) => {
     useInterval(() => {
         if (percent < hitProcentage) {
             // Smoothly go up in percent until the correct percent is reached
-            // Added procentage is proporsional to the difference between the current percent and the correct percent
+            // Added procentage is proporsional to the difference between the current percent and the hit procentage
             let difference = (hitProcentage - percent) / 100;
             difference = Math.max(difference, 0.01);
 
@@ -40,14 +39,12 @@ const StartingPage: React.FC<StartingPageProps> = ({ inputRef }) => {
         }
 
         // Calculate ETA
-        const timeSinceStart = Date.now() - startTime; 
-        const timePassed = timeSinceStart / totalDuration;
-        const timeLeft = 1 - timePassed;
+        const timeLeft = totalDuration - (percent / 100) * (totalDuration);
         if (timeLeft < 0) {
             setEta(0);
             return;
         } 
-        setEta((timeLeft * totalDuration) / 1000);
+        setEta((timeLeft) / 1000);
     }, updateInterval);
 
     return (
