@@ -55,7 +55,7 @@ export const github = async (args: string[]): Promise<string> => {
 
 export const linkedin = async (args: string[]): Promise<string> => {
   setTimeout(() => {
-    window.open(`https://www.linkedin.com/in/${config.social.linkedin}/`);
+    window.open(`https://www.linkedin.com/company/${config.social.linkedin}/`);
   }, 500);
 
   return 'Opening linkedin...';
