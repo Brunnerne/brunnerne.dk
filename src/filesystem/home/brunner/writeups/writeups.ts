@@ -1,6 +1,5 @@
 import File from '@utils/structure/File';
 import BrunnerUser from '@utils/structure/Users/BrunnerUser';
-import year2024 from './2024/year2024';
 import CTFs from '@writeups/writeups.json';
 
 export default class writeups extends File {
@@ -101,9 +100,5 @@ export default class writeups extends File {
         })
       ]);
     }
-
-    this.linkChildren([
-      year2024.instance
-    ]);
   }
 }
