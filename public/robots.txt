@@ -1,4 +1,5 @@
 User-agent: *
 Disallow:
 Disallow: /cgi-bin/
+Disallow: /writeups-md/
 Disallow: /super_secret_vault/very_hidden_flag.txt

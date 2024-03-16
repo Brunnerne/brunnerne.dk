@@ -1,6 +1,5 @@
-import File from '../../../utils/structure/File';
-import Group from '../../../utils/structure/Group';
-import VisitorUser from '../../../utils/structure/Users/VisitorUser';
+import File from '@utils/structure/File';
+import VisitorUser from '@utils/structure/Users/VisitorUser';
 import ExampleVisitorFile from './ExampleVisitorFile';
 
 export default class visitor extends File {

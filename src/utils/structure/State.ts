@@ -34,6 +34,6 @@ export default class State {
 
   protected constructor() {
     console.info('State initiated.')
-    console.debug('State:', this);
+    // console.debug('State:', this);
   }
 }
