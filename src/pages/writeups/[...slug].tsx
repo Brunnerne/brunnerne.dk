@@ -15,12 +15,19 @@ export default function Page() {
     slug = [router.query.slug ?? ""];
   }
 
+  const { year, ctf, category, writeup } = validateSlug(router.query.slug as string[]);
+  const list = [year, ctf, category, writeup].filter((x) => x !== null);
+
   return (
     <div className="pt-24 lg:pt-24 pb-11 ">
       {/* Heading */}
       <h1 className="text-3xl lg:text-5xl font-bold text-dark-foreground text-center">
         Brunnerne writeups
       </h1>
+      <h2 className="mt-4 text-xl lg:text-2xl font-bold text-dark-foreground text-center">
+        {list.join(' / ')}
+      </h2>
+
 
       {/* content */}
       <Card className="mt-16 max-w-5xl text-wrap mx-auto">
@@ -29,7 +36,7 @@ export default function Page() {
             ← Go one step up
           </Link>
         </p>
-        <CardContent />
+        <CardContent year={year} ctf={ctf} category={category} writeup={writeup} />
       </Card>
 
       {/* Back footer */}
@@ -42,11 +49,9 @@ export default function Page() {
   );
 };
 
-function CardContent() {
+function CardContent({ year, ctf, category, writeup }) {
   const router = useRouter()
-  const [content, setContent] = React.useState<string | null>(null);
-
-  const { year, ctf, category, writeup } = validateSlug(router.query.slug as string[]);
+  const [content, setContent] = React.useState<string | null>("Loading...");
 
   useEffect(() => {
     if (router.query.slug && year && ctf && category && writeup) {

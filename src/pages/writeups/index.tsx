@@ -14,6 +14,9 @@ const page: React.FC<props> = () => {
             <h1 className="text-3xl lg:text-5xl font-bold text-dark-foreground text-center">
                 Brunnerne writeups
             </h1>
+            <h2 className="mt-4 text-xl lg:text-2xl font-bold text-dark-foreground text-center">
+                Select a year to view writeups
+            </h2>
 
             {/* content */}
             <Card className="mt-16 max-w-5xl text-wrap mx-auto">
