@@ -2,10 +2,12 @@ import React from 'react';
 import '../styles/global.css';
 import Head from 'next/head';
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps, router }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const onClickAnywhere = () => {
+    if (!inputRef.current) return;
+
     inputRef.current.focus();
   };
 
@@ -44,9 +46,9 @@ const App = ({ Component, pageProps }) => {
         className="text-dark-foreground  text-xs 2xl:min-w-full 2xl:text-base"
         onClick={onClickAnywhere}
       >
-        <main className="bg-dark-background w-full h-full p-2">
+        <div className="bg-dark-background w-full h-full p-2">
           <Component {...pageProps} inputRef={inputRef} />
-        </main>
+        </div>
       </div>
     </>
   );

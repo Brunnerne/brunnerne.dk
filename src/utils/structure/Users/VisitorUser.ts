@@ -6,7 +6,7 @@ import User from '../User';
 export default class VisitorUser extends User {
   public static readonly instance = new VisitorUser();
 
-  public id = 1000;
+  public id = 1001;
   public username = 'visitor';
   public password = 'visitor';
   public group = [

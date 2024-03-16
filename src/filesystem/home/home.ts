@@ -1,6 +1,7 @@
-import File from '../../utils/structure/File';
-import RootUser from '../../utils/structure/Users/RootUser';
-import visitor from './visitor/visitor';
+import File from '@utils/structure/File';
+import RootUser from '@utils/structure/Users/RootUser';
+import brunner from '@filesystem/home/brunner/brunner';
+import visitor from '@filesystem/home/visitor/visitor';
 
 export default class home extends File {
   public static readonly instance = new home();
@@ -14,7 +15,8 @@ export default class home extends File {
     super();
 
     this.linkChildren([
-      visitor.instance
+      brunner.instance,
+      visitor.instance,
     ]);
   }
 }

@@ -4,6 +4,7 @@ import config from '../../config.json';
 import RollingRevealText from '../components/web/molecules/RollingRevealText';
 import RollingText from '../components/web/atoms/RollingText';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 interface IndexPageProps {
   inputRef: React.MutableRefObject<HTMLInputElement>;
@@ -40,7 +41,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
         <div className='mt-52'>
           <h2>
             <RollingRevealText text="Log in to the Terminal to get started" charTime={50} timeout={SUBHEADERTIMEOUT + (35 * 50)} />
-            </h2>
+          </h2>
         </div>
         <div className='mt-8'>
           <button
@@ -61,6 +62,11 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
           >
             <RollingRevealText text="Join Discord" charTime={50} timeout={BUTTONSTIMEOUT + (16 * 50)} />
           </button>
+        </div>
+        <div className='mt-10'>
+          <Link href="/writeups">
+            <RollingRevealText text="Or read our writeups" charTime={50} timeout={BUTTONSTIMEOUT + (28 * 50)} />
+          </Link>
         </div>
       </div>
     </>
