@@ -1,5 +1,5 @@
-import File from '../../../utils/structure/File';
-import VisitorUser from '../../../utils/structure/Users/VisitorUser';
+import File from '@utils/structure/File';
+import VisitorUser from '@utils/structure/Users/VisitorUser';
 import visitor from './visitor';
 
 export default class ExampleVisitorFile extends File {

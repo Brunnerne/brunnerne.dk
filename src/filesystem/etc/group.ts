@@ -1,6 +1,6 @@
-import File from "../../utils/structure/File";
-import State from "../../utils/structure/State";
-import RootUser from "../../utils/structure/Users/RootUser";
+import File from '@utils/structure/File';
+import State from '@utils/structure/State';
+import RootUser from '@utils/structure/Users/RootUser';
 
 export default class group extends File {
     public static readonly instance = new group();
@@ -31,6 +31,9 @@ export default class group extends File {
 
     private generateContent(): void {
         let content = '';
+
+        // Order groups by id
+        State.instance.groups.sort((a, b) => a.id - b.id);
 
         for (const group of State.instance.groups) {
             let groupMembers = group.members.map(member => member.username).join(',');

@@ -35,10 +35,12 @@ const Terminal: React.FC<TerminalPageProps> = ({ inputRef }) => {
         }
     }, [history, inputRef]);
 
+    const title = `${config.title} | Terminal`;
+
     return (
         <>
             <Head>
-                <title>{config.title} | Terminal</title>
+                <title>{title}</title>
             </Head>
 
             <div className="p-8 overflow-hidden h-full border-2 rounded border-dark-yellow">

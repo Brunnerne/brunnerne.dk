@@ -1,5 +1,5 @@
-import File from '../../utils/structure/File';
-import RootUser from '../../utils/structure/Users/RootUser';
+import File from '@utils/structure/File';
+import RootUser from '@utils/structure/Users/RootUser';
 import group from './group';
 
 export default class etc extends File {

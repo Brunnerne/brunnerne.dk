@@ -1,7 +1,7 @@
-import File from '../utils/structure/File';
-import RootUser from '../utils/structure/Users/RootUser';
-import etc from './etc/etc';
-import home from './home/home';
+import File from '@utils/structure/File';
+import RootUser from '@utils/structure/Users/RootUser';
+import etc from '@filesystem/etc/etc';
+import home from '@filesystem/home/home';
 
 export default class root extends File {
   public static readonly instance = new root();

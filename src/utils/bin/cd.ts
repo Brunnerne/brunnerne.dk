@@ -55,7 +55,7 @@ export const getFileFromPath = async (
   let path = [];
 
   // Check if change is starting at root dir level or user level
-  if (originalPath === '/') {
+  if (originalPath === '/' || inputPath.startsWith('/')) {
     startRoot = true;
   } else if (
     !originalPath ||
