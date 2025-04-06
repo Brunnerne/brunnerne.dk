@@ -40,9 +40,12 @@ export const repo = async (args: string[]): Promise<string> => {
 
 // About
 export const about = async (args: string[]): Promise<string> => {
-  return `Hi, we are ${config.name}. 
+  return `Hi, we are ${config.name}, a CTF team based in southern Denmark.  
+We are group of cyber security enthusiasts, who love to learn and grow in the cybersecurity field.
+We participate in a wide range of CTF competitions, and have members with different backgrounds and skills, ranging from newcomers to experienced hackers.
 
-Come check us out at <a href="${config.social.discord}" target="_blank">${config.social.discord}</a>!`;
+If you are from southern Denmark and are interested in joining us, feel free to reach out to us!.
+And come meet us at our next meetup!`;
 };
 
 export const github = async (args: string[]): Promise<string> => {
@@ -101,16 +104,14 @@ export const banner = (args?: string[]): string => {
   // Detect small screens
   const small = window.innerWidth < 740;
 
-if (small) {
-  return `
+  if (small) {
+    return `
   
   Brunnerne CLI
 
   Type 'help' to see the list of available commands.
-
-  Join us on discord at <a href="http://discord.brunnerne.dk" target="_blank">http://discord.brunnerne.dk</a>
   `;
-}
+  }
 
   return `
 
@@ -129,7 +130,5 @@ if (small) {
   Brunnerne CLI
 
   Type 'help' to see the list of available commands.
-
-  Join us on discord at <a href="http://discord.brunnerne.dk" target="_blank">http://discord.brunnerne.dk</a>
   `;
 };
