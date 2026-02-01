@@ -57,42 +57,53 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
             <RollingRevealText text="Launch terminal" charTime={CHARTIME} timeout={BUTTONSTIMEOUT} />
           </button>
         </div>
-        <div className='mt-10 text-center'>
+        <div className='mt-10 text-center flex flex-col md:flex-row items-center gap-4'>
+          <div>
+            <button
+              className='px-4 py-2 text-xl font-bold text-dark-background bg-dark-yellow border-2 border-dark-yellow rounded-md hover:bg-dark-foreground transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-dark-yellow focus:ring-offset-2'
+              onClick={() => {
+                setGetInTouch("Loading...");
+                setTimeout(() => {
+                  setGetInTouch("Copying...");
+                }, 1000);
+
+                setTimeout(() => {
+                  setGetInTouch(`${prefix()}@` + config.site);
+
+                  // Pase to clipboard
+                  navigator.clipboard.writeText(`${prefix()}@` + config.site).then(() => {
+                    console.log('Copied to clipboard');
+                  }
+                  ).catch((err) => {
+                    console.error('Failed to copy: ', err);
+                  }
+                  );
+                }, 1500);
+              }}
+            >
+              <RollingRevealText text={getInTouch} charTime={CHARTIME} timeout={BUTTONSTIMEOUT + (16 * CHARTIME)} />
+            </button>
+            {
+              getInTouch === `${prefix()}@${config.site}` &&
+              (<small>
+                <br />
+                Email is copied to clipboard
+              </small>)
+            }
+          </div>
           <button
             className='px-4 py-2 text-xl font-bold text-dark-background bg-dark-yellow border-2 border-dark-yellow rounded-md hover:bg-dark-foreground transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-dark-yellow focus:ring-offset-2'
             onClick={() => {
-              setGetInTouch("Loading...");
-              setTimeout(() => {
-                setGetInTouch("Copying...");
-              }, 1000);
-
-              setTimeout(() => {
-                setGetInTouch(`${prefix()}@` + config.site);
-
-                // Pase to clipboard
-                navigator.clipboard.writeText(`${prefix()}@` + config.site).then(() => {
-                  console.log('Copied to clipboard');
-                }
-                ).catch((err) => {
-                  console.error('Failed to copy: ', err);
-                }
-                );
-              }, 1500);
+              // Open a new tab to discord.brunnerne.dk
+              window.open('https://discord.brunnerne.dk', '_blank');
             }}
           >
-            <RollingRevealText text={getInTouch} charTime={CHARTIME} timeout={BUTTONSTIMEOUT + (16 * CHARTIME)} />
+            <RollingRevealText text={"Join our Discord"} charTime={CHARTIME} timeout={BUTTONSTIMEOUT + ((16 + 12) * CHARTIME)} />
           </button>
-          {
-            getInTouch === `${prefix()}@${config.site}` &&
-            (<small>
-              <br />
-              Email is copied to clipboard
-            </small>)
-          }
         </div>
         <div className='mt-10'>
           <Link href="/writeups">
-            <RollingRevealText text="Or read our writeups" charTime={CHARTIME} timeout={BUTTONSTIMEOUT + (28 * CHARTIME)} />
+            <RollingRevealText text="Or read our writeups" charTime={CHARTIME} timeout={BUTTONSTIMEOUT + ((16 + 12 + 12) * CHARTIME)} />
           </Link>
         </div>
       </div>
