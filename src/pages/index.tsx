@@ -109,12 +109,12 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
               window.open('https://ctf.brunnerne.dk', '_blank');
             }}
           >
-            <RollingRevealText text="Join BrunnerCTF 2026" charTime={CHARTIME} timeout={BUTTONSTIMEOUT + ((16 + 12 + 10) * CHARTIME)} />
+            <RollingRevealText text="Join BrunnerCTF 2026" charTime={CHARTIME} timeout={BUTTONSTIMEOUT + ((16 /*+ 12*/ + 10) * CHARTIME)} />
           </button>
         </div>
         <div className='mt-10'>
           <Link href="/writeups">
-            <RollingRevealText text="Or read our writeups" charTime={CHARTIME} timeout={BUTTONSTIMEOUT + ((16 + 12 + 20) * CHARTIME)} />
+            <RollingRevealText text="Or read our writeups" charTime={CHARTIME} timeout={BUTTONSTIMEOUT + ((16 /*+ 12*/ + 20) * CHARTIME)} />
           </Link>
         </div>
       </div>
