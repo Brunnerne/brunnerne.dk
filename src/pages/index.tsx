@@ -91,7 +91,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
               </small>)
             }
           </div>
-          <button
+          {/* <button
             className='px-4 py-2 text-xl font-bold text-dark-background bg-dark-yellow border-2 border-dark-yellow rounded-md hover:bg-dark-foreground transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-dark-yellow focus:ring-offset-2'
             onClick={() => {
               // Open a new tab to discord.brunnerne.dk
@@ -99,7 +99,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
             }}
           >
             <RollingRevealText text={"Join our Discord"} charTime={CHARTIME} timeout={BUTTONSTIMEOUT + ((16 + 12) * CHARTIME)} />
-          </button>
+          </button> */}
         </div>
         
         <div className='mt-8'>
